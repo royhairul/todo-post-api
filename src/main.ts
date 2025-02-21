@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-import { ZodExceptionFilter } from './common/filters/zod-exception.filter';
 import { ValidationPipe } from '@nestjs/common/pipes';
 
 async function bootstrap() {
@@ -17,9 +16,6 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
-  // Menggunakan exception filter global untuk menangani error Zod
-  app.useGlobalFilters(new ZodExceptionFilter());
 
   app.useGlobalPipes(
     new ValidationPipe({
