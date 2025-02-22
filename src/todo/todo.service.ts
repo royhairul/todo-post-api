@@ -47,6 +47,7 @@ export class TodoService {
       data: {
         id: crypto.randomUUID(),
         ...request,
+        dueDate: new Date(request.dueDate),
       },
     });
 
